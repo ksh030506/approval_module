@@ -29,8 +29,8 @@ class DefaultTossApprovalFinderTest {
     }
 
     @Test
-    @DisplayName("타입으로_카드혜택_찾기_실행")
-    void 타입으로_카드혜택_찾기_실행() throws IOException {
+    @DisplayName("타입으로_카드혜택_찾기")
+    void 타입으로_카드혜택_찾기() throws IOException {
         sut.add(CARDBENEFIT, cardBenefit);
 
         Approval actual = sut.findBy(CARDBENEFIT);
