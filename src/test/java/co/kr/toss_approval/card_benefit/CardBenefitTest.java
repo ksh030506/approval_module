@@ -1,6 +1,7 @@
 package co.kr.toss_approval.card_benefit;
 
 import co.kr.toss_approval.card_benefit.messages.CardBenefitResponse;
+import co.kr.toss_approval.domain.TossResult;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ class CardBenefitTest {
     @Test
     @DisplayName("api 테스트")
     void api_보내기() throws IOException {
-        CardBenefitResponse result = sut.execute();
-        assertThat(result).isInstanceOf(CardBenefitResponse.class);
+        TossResult<CardBenefitResponse> result = sut.execute();
+        assertThat(result.getProperties()).isInstanceOf(CardBenefitResponse.class);
     }
 }
