@@ -1,0 +1,3 @@
+toss:
+  url:
+    benefit-card: https://api.tosspayments.com/v1/promotions/card
