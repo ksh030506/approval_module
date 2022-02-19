@@ -2,12 +2,14 @@ package co.kr.toss_approval;
 
 import co.kr.toss_approval.card_benefit.CardBenefit;
 import co.kr.toss_approval.domain.TossApprovalType;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static co.kr.toss_approval.domain.TossApprovalType.CARDBENEFIT;
 
+@Component
 public class DefaultTossApprovalFinder implements TossApprovalFinder {
     private final Map<TossApprovalType, Approval> map = new HashMap<>();
 
