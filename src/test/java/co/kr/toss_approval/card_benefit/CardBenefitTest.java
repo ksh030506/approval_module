@@ -23,6 +23,7 @@ class CardBenefitTest {
     @DisplayName("api 테스트")
     void api_보내기() throws IOException {
         TossResult<CardBenefitResponse> result = sut.execute();
+        System.out.println("result.getProperties() = " + result.getProperties());
         assertThat(result.getProperties()).isInstanceOf(CardBenefitResponse.class);
     }
 }
