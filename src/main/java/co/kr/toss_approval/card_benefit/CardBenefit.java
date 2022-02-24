@@ -12,8 +12,8 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 
 public class CardBenefit implements Approval  {
-    private String BENEFIT_CARD_URL;
-    private Authorization authorization;
+    private final String BENEFIT_CARD_URL;
+    private final Authorization authorization;
 
     public CardBenefit() {
         this.BENEFIT_CARD_URL = "https://api.tosspayments.com/v1/promotions/card";
