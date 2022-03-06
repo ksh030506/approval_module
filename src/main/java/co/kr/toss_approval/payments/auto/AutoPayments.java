@@ -3,6 +3,7 @@ package co.kr.toss_approval.payments.auto;
 import co.kr.toss_approval.Approval;
 import co.kr.toss_approval.config.authorization.Authorization;
 import co.kr.toss_approval.domain.TossResult;
+import co.kr.toss_approval.payments.auto.mesasge.BillingResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -28,20 +29,22 @@ public class AutoPayments implements Approval {
     }
 
     @Override
-    public TossResult<Object> execute() throws IOException {
+    public TossResult<BillingResponse> execute() throws IOException {
+
+        String token = authorization.createToken();
         Response execute = Request.post(AUTO_BILLING_URL)
                 .addHeader("Content-Type", "application/json")
-                .addHeader("Authorization", "Basic dGVzdF9za18wUG94eTFYUUw4UmcyNkJrR0dZMzduTzVXbWxnOg==")
-                .bodyString(aaa(), ContentType.APPLICATION_JSON)
+                .addHeader("Authorization", "Basic " + token)
+                .bodyString(getParam(), ContentType.APPLICATION_JSON)
                 .execute();
 
         String json = execute.returnContent().asString(Charset.defaultCharset());
-        TossResult<Object> objectTossResult = new TossResult<>();
-        objectTossResult.setProperties(new Gson().fromJson(json, Object.class));
+        TossResult<BillingResponse> objectTossResult = new TossResult<>();
+        objectTossResult.setProperties(new Gson().fromJson(json, BillingResponse.class));
         return objectTossResult;
     }
 
-    public String aaa() throws JsonProcessingException {
+    public String getParam() throws JsonProcessingException {
         Billing billing = Billing.builder()
                 .cardNumber("5594382013964336")
                 .cardExpirationYear("25")
